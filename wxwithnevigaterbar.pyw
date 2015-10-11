@@ -27,6 +27,8 @@ class nevigat(wx.Frame):
 		Edit.Append(201,'&Add',"Add elements")
 		Edit.Append(202,'&Copy',"Copy from other please")
 		Edit.Append(203,'&Flitter',"Cut result with re")
+		Edit.AppendSeparator()
+		Edit.Append(205,'&Clear',"Clear the result panel")
 
 		# Help define
 		Help.Append(301,'&About',"about us")
@@ -34,7 +36,6 @@ class nevigat(wx.Frame):
 		menubar.Append(File,'&File')
 		menubar.Append(Edit,'&Edit')
 		menubar.Append(Help,'&Help')
-
 		# button define
 		# box.Add(wx.Button(panel,-1,'Copy',(0,0)),1)
 		# box.Add(wx.Button(panel,-1,'Flitter',(0,40)),1)
@@ -43,10 +44,15 @@ class nevigat(wx.Frame):
 		self.Center()
 		# static text define
 		wx.StaticText(panel,-1,'Strings:',pos=(50,24))
-		text1=wx.TextCtrl(panel,-1,'',pos=(100,23))
+		self.text1=wx.TextCtrl(panel,-1,'',pos=(100,23))
 		self.SetMenuBar(menubar)
+		# button to exec script
+		self.button1=wx.Button(panel,-1,'Run',(230,20))
+		self.button1.Bind(wx.EVT_BUTTON,self.OnClick,self.button1)
 		# textblank defines
-		textaera=wx.TextCtrl(self,-1,u'Result Here',size=(200,100),pos=(90,80))
+		self.textaera=wx.TextCtrl(self,-1,u'Result Here',size=(200,100),pos=(90,80))
+		self.textaera.SetInsertionPoint(0)
+		self.textaera.Bind(wx.EVT_KEY_UP,self.OnSelectAll)
 		# event settings to solve the menu actions
 		wx.EVT_MENU(self,101,self.Open)
 		wx.EVT_MENU(self,102,self.Save)
@@ -54,7 +60,9 @@ class nevigat(wx.Frame):
 		wx.EVT_MENU(self,201,self.Add)
 		wx.EVT_MENU(self,202,self.Flitter)
 		wx.EVT_MENU(self,301,self.About)
+		wx.EVT_MENU(self,205,self.Clear)
 	def Open(self,event):
+		self.textaera.SetValue("hello WX")
 		pass
 	def Save(self,event):
 		pass
@@ -69,6 +77,15 @@ class nevigat(wx.Frame):
 		if dlg.ShowModal()==wx.ID_YES:
 			pass
 		dlg.Destroy()
+	def OnSelectAll(self,event):
+		if(event.GetKeyCode()==65 and event.ControlDown()):
+			self.textaera.SelectAll()
+	def OnClick(self,event):
+		self.textaera.AppendText(self.text1.GetValue()+'\n')
+		pass
+	def Clear(self,event):
+		self.textaera.Clear()
+		pass
 class MyApp(wx.App):
 	def OnInit(self):
 		frame=nevigat(None,-1,"My app")
