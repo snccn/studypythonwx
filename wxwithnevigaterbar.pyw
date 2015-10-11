@@ -4,7 +4,7 @@
 #author snccn
 #filename: wxwithnevigaterbar.pyw
 from wx import *
-
+from time import ctime as tm
 
 class nevigat(wx.Frame):
 	def __init__(self,parent,ID,title):
@@ -50,9 +50,9 @@ class nevigat(wx.Frame):
 		self.button1=wx.Button(panel,-1,'Run',(230,20))
 		self.button1.Bind(wx.EVT_BUTTON,self.OnClick,self.button1)
 		# textblank defines
-		self.textaera=wx.TextCtrl(self,-1,u'Result Here',size=(200,100),pos=(90,80))
+		self.textaera=wx.TextCtrl(self,-1,u'',size=(300,100),pos=(38,80),style=(wx.TE_MULTILINE))
 		self.textaera.SetInsertionPoint(0)
-		self.textaera.Bind(wx.EVT_KEY_UP,self.OnSelectAll)
+		# self.textaera.Bind(wx.EVT_KEY_UP,self.OnSelectAll)
 		# event settings to solve the menu actions
 		wx.EVT_MENU(self,101,self.Open)
 		wx.EVT_MENU(self,102,self.Save)
@@ -81,7 +81,8 @@ class nevigat(wx.Frame):
 		if(event.GetKeyCode()==65 and event.ControlDown()):
 			self.textaera.SelectAll()
 	def OnClick(self,event):
-		self.textaera.AppendText(self.text1.GetValue()+'\n')
+		self.textaera.AppendText(tm()+' '+self.text1.GetValue())
+		self.textaera.AppendText('\n')
 		pass
 	def Clear(self,event):
 		self.textaera.Clear()
