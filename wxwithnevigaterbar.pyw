@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#code in utf-8
+#-*- coding:utf-8 -*-
 #date 2015 10 10
 #author snccn
 #filename: wxwithnevigaterbar.pyw
@@ -25,6 +25,9 @@ class nevigat(wx.Frame):
 		File.Append(104,'&Exit',"Quit Now")
 		# edit define
 		Edit.Append(201,'&Add',"Add elements")
+		Edit.Append(202,'&Copy',"Copy from other please")
+		Edit.Append(203,'&Flitter',"Cut result with re")
+
 		# Help define
 		Help.Append(301,'&About',"about us")
 		# navigaat main define
@@ -33,20 +36,32 @@ class nevigat(wx.Frame):
 		menubar.Append(Help,'&Help')
 
 		# button define
-		box.Add(wx.Button(panel,-1,'Copy',(0,0)),1)
-		box.Add(wx.Button(panel,-1,'Flitter',(0,40)),1)
-		box.Add(wx.Button(panel,-1,'Tools',(0,80)),1)
+		# box.Add(wx.Button(panel,-1,'Copy',(0,0)),1)
+		# box.Add(wx.Button(panel,-1,'Flitter',(0,40)),1)
+		# box.Add(wx.Button(panel,-1,'Tools',(0,80)),1)
 		panel.SetSizer(box)
 		self.Center()
 		# static text define
-		wx.StaticText(panel,-1,'Strings:',pos=(40,54))
-		wx.TextCtrl(panel,-1,'',pos=(90,53))
-
-
-		pass
+		wx.StaticText(panel,-1,'Strings:',pos=(50,24))
+		text1=wx.TextCtrl(panel,-1,'',pos=(100,23))
 		self.SetMenuBar(menubar)
+		# textblank defines
+		textaera=wx.TextCtrl(self,-1,u'Result Here',size=(200,100),pos=(90,80))
+		# event settings to solve the menu actions
+		wx.EVT_MENU(self,101,self.Open)
+		wx.EVT_MENU(self,102,self.Save)
 		wx.EVT_MENU(self,104,self.OnExit)
+		wx.EVT_MENU(self,201,self.Add)
+		wx.EVT_MENU(self,202,self.Flitter)
 		wx.EVT_MENU(self,301,self.About)
+	def Open(self,event):
+		pass
+	def Save(self,event):
+		pass
+	def Add(self,event):
+		pass
+	def Flitter(self,event):
+		pass
 	def OnExit(self,event):
 		self.Close()
 	def About(self,event):
