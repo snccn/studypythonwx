@@ -6,7 +6,7 @@
 # version alpha 0.01
 from wx import *
 from time import ctime as tm
-
+from sender import *
 class nevigat(wx.Frame):
 	def __init__(self,parent,ID,title):
 		wx.Frame.__init__(self,parent,-1,title,wx.DefaultPosition,wx.Size(200,150))
@@ -62,8 +62,11 @@ class nevigat(wx.Frame):
 		wx.EVT_MENU(self,202,self.Flitter)
 		wx.EVT_MENU(self,301,self.About)
 		wx.EVT_MENU(self,205,self.Clear)
+		# define the import things
+		self.database=sender()
 	def Open(self,event):
-		self.textaera.SetValue("hello WX")
+		self.database.select_data(str(1))
+		self.textaera.SetValue(str(self.database.select_data(str(1))))
 		pass
 	def Save(self,event):
 		pass
