@@ -3,7 +3,7 @@
 #date 2015 10 10
 #author snccn
 #filename: wxwithnevigaterbar.pyw
-# version alpha 0.01
+# version alpha 0.07
 from wx import *
 from time import ctime as tm
 from sender import *
@@ -62,7 +62,7 @@ class nevigat(wx.Frame):
 		wx.EVT_MENU(self,202,self.Flitter)
 		wx.EVT_MENU(self,301,self.About)
 		wx.EVT_MENU(self,205,self.Clear)
-		# define the import things
+		# define the database object 
 		self.database=sender()
 	def Open(self,event):
 		self.database.select_data(str(1))
@@ -90,6 +90,8 @@ class nevigat(wx.Frame):
 		pass
 	def Clear(self,event):
 		self.textaera.Clear()
+		pass
+	def optimition_check(self):
 		pass
 class MyApp(wx.App):
 	def OnInit(self):
