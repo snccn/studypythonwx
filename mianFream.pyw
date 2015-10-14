@@ -10,7 +10,7 @@ from sender import *
 class nevigat(wx.Frame):
 	def __init__(self,parent,ID,title):
 		wx.Frame.__init__(self,parent,-1,title,wx.DefaultPosition,wx.Size(200,150))
-		self.SetSize(wx.Size (400,300))
+		self.SetSize(wx.Size (800,600))
 		menubar=wx.MenuBar()
 		panel=wx.Panel(self,-1)
 		box=wx.BoxSizer(wx.HORIZONTAL)
@@ -22,6 +22,8 @@ class nevigat(wx.Frame):
 		# File define
 		File.Append(101,'&Open',"Open a new file")
 		File.Append(102,'&Save',"Save the file")
+		File.Append(105,'&Save As',"save as the file")
+		File.Append(106,'&Open dict',"open the dict where you have")
 		File.AppendSeparator()
 		File.Append(104,'&Exit',"Quit Now")
 		# edit define
@@ -30,7 +32,9 @@ class nevigat(wx.Frame):
 		Edit.Append(203,'&Flitter',"Cut result with re")
 		Edit.AppendSeparator()
 		Edit.Append(205,'&Clear',"Clear the result panel")
-
+		Edit.Append(206,'&Md5',"Md5 hash the String")
+		Edit.Append(207,'&Base64',"Base64 encoder")
+		Edit.Append(208,'&HEX',"ASCII HEX options") 
 		# Help define
 		Help.Append(301,'&About',"about us")
 		# navigaat main define
@@ -77,7 +81,7 @@ class nevigat(wx.Frame):
 	def OnExit(self,event):
 		self.Close()
 	def About(self,event):
-		dlg=wx.MessageDialog(None,u"transport strings with http \n alpha 0.01 !",u"About us",wx.YES_NO|wx.ICON_QUESTION)
+		dlg=wx.MessageDialog(None,u"HEX \n alpha 0.01 !",u"About us",wx.YES_NO|wx.ICON_QUESTION)
 		if dlg.ShowModal()==wx.ID_YES:
 			pass
 		dlg.Destroy()
